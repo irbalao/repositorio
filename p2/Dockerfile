@@ -1,6 +1,8 @@
 FROM ubuntu:bionic
 
+EXPOSE 9080
 
+ENV GROUP_NUMBER
 RUN apt-get update
 RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
@@ -12,6 +14,7 @@ RUN git clone https://github.com/irbalao/repositorio
 WORKDIR repositorio/bookinfo/src/productpage
 RUN pip3 install -r requirements.txt
 
-EXPOSE 9080
+RUN sed -i "s/Simple\sBookstore\sApp/Simple Bookstore App Equipo ${GROUP_NUMBER}/g" index.html
+RUN sed -i "s/Simple\sBookstore\sApp/Simple Bookstore App Equipo ${GROUP_NUMBER}/g" productpage.html
 
 CMD ["python3", "productpage_monolith.py", "9080"]
