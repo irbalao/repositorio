@@ -1,8 +1,8 @@
 version: "3.3"
 services: 
   product-page:
-    container_name: g33-productpage
-    image: g33/productpage
+    container_name: 44-productpage
+    image: 44/productpage
     build: ./product-page
     ports: 
       - 9080:9080
@@ -10,23 +10,23 @@ services:
       - DETAILS_HOSTNAME=details
       - RATINGS_HOSTNAME=ratings
       - REVIEWS_HOSTNAME=reviews
-      - GROUP_NUMBER=Equipo 33 
+      - GROUP_NUMBER=Equipo 44 
       - ENABLE_RATINGS=true
   details:
-    container_name: g33-details
-    image: g33/details
+    container_name: 44-details
+    image: 44/details
     build: ./details
   reviews:
-    container_name: g33-reviews
-    image: g33/reviews
+    container_name: 44-reviews
+    image: 44/reviews
     build: ./reviews
     environment:
       - RATINGS_HOSTNAME=ratings
       - ENABLE_RATINGS=true
       - SERVICE_VERSION=v3
   ratings:
-    container_name: g33-ratings
-    image: g33/ratings
+    container_name: 44-ratings
+    image: 44/ratings
     build: ./ratings
     environment:
       - SERVICE_VERSION=v1
