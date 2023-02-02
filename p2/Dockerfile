@@ -14,7 +14,7 @@ RUN git clone https://github.com/irbalao/repositorio
 WORKDIR repositorio/bookinfo/src/productpage
 RUN pip3 install -r requirements.txt
 
-RUN sed -i "s/Simple\sBookstore\sApp/Simple Bookstore App Equipo ${GROUP_NUMBER}/g" index.html
-RUN sed -i "s/Simple\sBookstore\sApp/Simple Bookstore App Equipo ${GROUP_NUMBER}/g" productpage.html
+RUN sed -i "s/Simple\sBookstore\sApp/Simple Bookstore App Equipo ${GROUP_NUMBER}/g" ./templates/index.html
+RUN sed -i "s/Simple\sBookstore\sApp/Simple Bookstore App Equipo ${GROUP_NUMBER}/g" ./templates/productpage.html
 
 CMD ["python3", "productpage_monolith.py", "9080"]
