@@ -8,4 +8,4 @@ RUN git clone https://github.com/irbalao/repositorio
 EXPOSE 9080
 
 WORKDIR repositorio/bookinfo/src/productpage
-CMD ["python3", "./productpage_monolith.py"]
+CMD ["python3", "productpage_monolith.py"]
