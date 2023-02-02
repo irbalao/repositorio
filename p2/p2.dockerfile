@@ -4,6 +4,6 @@ RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
 RUN pip3 install --upgrade setuptools
 RUN apt-get -y install git
-RUN git clone https://github.com/nachosmillescas/CDPS_P2
+RUN git clone https://github.com/irbalao/repositorio
 EXPOSE 9080
-CMD ["/usr/bin/python3", "/home/nachosmillescas/imagenes/CDPS_P2/bookinfo/src/productpage/productpage_monolith.py"]
+CMD ["/usr/bin/python3", "/home/ignargb/repositorio/bookinfo/src/productpageproductpage_monolith.py"]
