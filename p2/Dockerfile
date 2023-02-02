@@ -6,4 +6,6 @@ RUN pip3 install --upgrade setuptools
 RUN apt-get -y install git
 RUN git clone https://github.com/irbalao/repositorio
 EXPOSE 9080
-CMD ["/usr/bin/python3", "/home/ignargb/repositorio/bookinfo/src/productpage/productpage_monolith.py"]
+
+WORKDIR /home/ignargb/repositorio/bookinfo/src/productpage/
+CMD ["python3", "productpage_monolith.py"]
