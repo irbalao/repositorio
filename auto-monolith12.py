@@ -1,25 +1,38 @@
-#! /usr/bin/python
-from subprocess import call
+#!/usr/bin/python3
+import json
 import os
+import logging
+from os import close
 import sys
+from subprocess import call
 
-cwd = str(os.getcwd())
-
-#Creamos la variable del entorno
-os.environ['GROUP_NUMBER']="44"
-num_grupo= str(os.environ.get('GROUP_NUMBER'))
-
-#Modificamos el titulo
-call(['cp '+cwd+'/templates/productpage.html '+cwd+'/templates/productpage1.html'], shell=True)
-copia = open( cwd + '/templates/productpage1.html', 'r')
-f = open( cwd + '/templates/productpage.html', 'w')
-for line in copia:
-    if "{% block title %}Simple Bookstore App{% endblock %}" in line:
-        f.write("{% block title %}" + num_grupo + "{% endblock %}")
+def modifHTML():
+  h=open("practica_creativa2/bookinfo/src/productpage/templates/productpage.html", "r+")
+  aux=open("practica_creativa2/bookinfo/src/productpage/templates/auxiliar.html", "w+")
+  for line in h:
+    if ("{} block title {}Simple Bookstore App{} endblock {}".format('{%', '%}', '{%', '%}')) in line:
+      print("Hay una linea que es igual a la elegida")
+      aux.write("{} block title {} Simple Bookstore App {} {} endblock {}".format('{%', '%}', os.environ.get('GROUP_NUMBER'), '{%', '%}'))
     else:
-        f.write(line)
-f.close()
-copia.close()
-call(['rm '+cwd+'/templates/productpage1.html'],shell=True)
-#Lanzamos la aplicacion
-call(["python3 productpage_monolith.py 9080"], shell=True)
+      aux.write(line)
+  h.close()
+  aux.close()
+  h=open("practica_creativa2/bookinfo/src/productpage/templates/productpage.html", "w+")
+  aux=open("practica_creativa2/bookinfo/src/productpage/templates/auxiliar.html", "r")
+  for line in aux:
+    h.write(line)
+
+#------------------------------------------------------MAIN---------------------------------------------------
+def funcion(): 
+  os.environ['GROUP_NUMBER']="Equipo 44"
+  os.system("printenv GROUP_NUMBER")
+  call(["sudo", "rm", "-r", "CDPS_P2"] )
+  call(["git", "clone", "https://github.com/CDPS-ETSIT/practica_creativa2.git"] )
+  call(["sudo", "apt-get", "-y", "install", "python"] )
+  call(["sudo", "apt-get", "update"] )
+  call(["sudo", "apt-get", "-y", "install", "python3-pip"] )
+  os.system("pip3 install -r practica_creativa2/bookinfo/src/productpage/requirements.txt")
+  modifHTML()
+  os.system("python3 practica_creativa2/bookinfo/src/productpage/productpage_monolith.py 9080")
+
+funcion()
