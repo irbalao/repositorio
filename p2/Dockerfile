@@ -2,7 +2,7 @@ FROM ubuntu:bionic
 
 EXPOSE 9080
 
-ENV GROUP_NUMBER
+ENV GROUP_NUMBER=44
 RUN apt-get update
 RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
